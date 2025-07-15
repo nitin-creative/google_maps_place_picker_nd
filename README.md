@@ -5,7 +5,7 @@
 > To install:  
 > 
 > ```
-> flutter pub add google_maps_place_picker_mb
+> flutter pub add google_maps_place_picker_nd
 > ```
 > 
 > ~ _martin-braun_
@@ -170,7 +170,7 @@ Alternatively, you can build your own way with 'selectedPlaceWidgetBuilder' and 
 
 ```dart
 import 'package:flutter/material.dart';
-import 'package:google_maps_place_picker_mb/google_maps_place_picker.dart';
+import 'package:google_maps_place_picker_nd/google_maps_place_picker.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'dart:io' show Platform;
 
@@ -451,4 +451,4 @@ final ThemeData darkTheme = ThemeData.dark().copyWith(
 > ~ _martin-braun_ 
 
 [tracker]: https://github.com/fysoul17/google_maps_place_picker/issues
-[tracker_fork]: https://github.com/martin-braun/google_maps_place_picker_mb/issues
+[tracker_fork]: https://github.com/martin-braun/google_maps_place_picker_nd/issues
