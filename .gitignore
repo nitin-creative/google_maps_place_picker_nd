@@ -328,3 +328,6 @@ fabric.properties
 !/gradle/wrapper/gradle-wrapper.jar
 
 # End of https://www.toptal.com/developers/gitignore/api/flutter,vim,visualstudiocode,androidstudio,xcode,windows,macos,linux
+/example/ios/Flutter/ephemeral/flutter_lldb_helper.py
+/example/ios/Flutter/ephemeral/flutter_lldbinit
+/.idea/studiobot.xml
