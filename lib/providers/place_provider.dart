@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -85,8 +86,40 @@ class PlaceProvider extends ChangeNotifier {
           'Location permissions are permanently denied, we cannot request permissions.');
     }
 
+    late LocationSettings locationSettings;
+
+    if (defaultTargetPlatform == TargetPlatform.android) {
+      locationSettings = AndroidSettings(
+          accuracy: desiredAccuracy ?? LocationAccuracy.best,
+          distanceFilter: 100,
+          forceLocationManager: true,
+          intervalDuration: const Duration(seconds: 10),
+          //(Optional) Set foreground notification config to keep the app alive
+          //when going to the background
+          foregroundNotificationConfig: const ForegroundNotificationConfig(
+              notificationText:
+                  "Example app will continue to SBackground to update your position",
+              notificationTitle: "Running in Background",
+              enableWakeLock: true,
+              setOngoing: true));
+    } else if (defaultTargetPlatform == TargetPlatform.iOS || defaultTargetPlatform == TargetPlatform.macOS) {
+      locationSettings = AppleSettings(
+        accuracy: desiredAccuracy ?? LocationAccuracy.best,
+        activityType: ActivityType.fitness,
+        distanceFilter: 100,
+        pauseLocationUpdatesAutomatically: true,
+        // Only set to true if our app will be started up in the background.
+        showBackgroundLocationIndicator: false,
+      );
+    } else {
+      locationSettings = LocationSettings(
+        accuracy: desiredAccuracy ?? LocationAccuracy.best,
+        distanceFilter: 100,
+      );
+    }
+
     _currentPosition = await Geolocator.getCurrentPosition(
-      desiredAccuracy: desiredAccuracy ?? LocationAccuracy.best,
+      locationSettings: locationSettings,
     );
   }
 
