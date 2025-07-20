@@ -145,7 +145,7 @@ class AutoCompleteSearchState extends State<AutoCompleteSearch> {
     return Selector<SearchProvider, String>(
         selector: (_, provider) => provider.searchTerm,
         builder: (_, data, __) {
-          if (data.length > 0) {
+          if (data.isNotEmpty) {
             return Padding(
               padding: const EdgeInsets.only(right: 8.0),
               child: GestureDetector(
